@@ -8,8 +8,6 @@ script.on_init(function()
 end)
 
 script.on_event(defines.events.on_runtime_mod_setting_changed, function(event)
-    rendering.clear(script.mod_name)
-    storage.playerToLightMap = {}
     for _, player in pairs(game.players) do 
         updatePlayer(player)
     end
