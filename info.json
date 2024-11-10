@@ -1,0 +1,10 @@
+{
+    "name": "spotlight",
+    "version": "1.0.0",
+    "factorio_version": "2.0",
+    "title": "Spotlight",
+    "author": "Envian",
+    "homepage": "",
+    "description": "Gives you a spotlight so you can see what you're doing.",
+    "dependencies": ["base >= 2.0"]
+}
