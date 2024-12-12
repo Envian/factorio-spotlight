@@ -17,13 +17,13 @@ function updatePlayer(player)
     playerSettings = settings.get_player_settings(player)
     existingLight = storage.playerToLightMap[player.index]
 
-    if existingLight ~= nil and existingLight.surface ~= player.surface then
+    if existingLight ~= nil and (not existingLight.valid or existingLight.surface ~= player.surface) then 
         -- Delete any lights on the wrong surface to be remade.
         existingLight.destroy()
         existingLight = nil
     end
     
-    if existingLight == nil then
+    if existingLight == nil or not existingLight.valid then
         -- The light doesn't exist and the player has a character
         storage.playerToLightMap[player.index] = rendering.draw_light({
             sprite = "utility/light_medium",
@@ -69,7 +69,7 @@ end)
 script.on_event(defines.events.on_tick, function(event)
     for index, player in pairs(game.players) do
         light = storage.playerToLightMap[index]
-        if light ~= nil then
+        if light ~= nil and light.valid then
             light.target = player.position
         end
     end
